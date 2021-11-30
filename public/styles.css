@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap");
+.hide {
+  display: none;
+  color: black;
+}
+
+.container {
+  max-width: 1480px;
+  width: 100%;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.add-button {
+  font-size: 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #4B48E5;
+  background: linear-gradient(180deg, #5E5BF3 0%, #0d0c6c 100%);
+  outline: none;
+  color: #ffffff;
+  padding: 0.2em 1em;
+  cursor: pointer;
+}
+.add-button:hover {
+  transform: scale(0.95);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.modal__close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+.modal__close:hover {
+  fill: #4B48E5;
+}
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+.modal__body {
+  position: relative;
+  padding: 15px 30px;
+  background: #fff;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.main-modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.menu {
+  padding: 20px 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table__title {
+  background: #4B48E5;
+  color: #fff;
+}
+.table__title > tr > th {
+  text-align: start;
+  padding: 10px;
+}
+
+/*# sourceMappingURL=styles.css.map */
