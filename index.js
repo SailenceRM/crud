@@ -27,6 +27,7 @@ const student = (req, res) => {
             break
         case 'PUT':
             getAsyncData(req, data => {
+                console.log(data)
                 database.update(res, JSON.parse(data))
             })
             break
@@ -41,11 +42,16 @@ const student = (req, res) => {
 const handler = (req, res) => {
     const url = req.url.substring(1).split('/')
 
-    if (url[0] === 'student') {
-        student(req, res)
+    switch (url[0]) {
+        case 'student':
+            student(req, res)
+            break
+        default:
+            staticDir.serve(req, res)
     }
 
-    staticDir.serve(req, res)
+
+
 
 }
 

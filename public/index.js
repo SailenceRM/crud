@@ -33,16 +33,18 @@ const data = new function() {
 
     this.getAll = () => Object.values(arr);
 
-    this.update = (proms, callback = () => null) => {
-        util.ajax('/student/' + proms.id, {method: 'PUT', body: proms.obj}, data => {
-            arr[data['_id']] = data
+    this.update = ({id, obj}, callback = () => null) => {
+        arr[id] = obj
+        console.log(arr)
+        util.ajax('/student', {method: 'PUT', body: JSON.stringify({id, obj})}, data => {
             callback()
         })
     }
 
-    this.delete = (id) => {
+    this.delete = (id, callback=() => null) => {
         util.ajax('/student/' + id, {method: 'DELETE'}, data => {
             delete arr[id]
+            callback()
         })
     }
 }
@@ -56,6 +58,7 @@ const Modal = function(main) {
 
     closeIcon.addEventListener('click', () => {
         this.hide()
+        this.form.reset()
     })
 
     this.hide = () => {
@@ -65,14 +68,20 @@ const Modal = function(main) {
         main.classList.remove('hide')
     }
 
-    this.getFormValue = () => {
+    this.getFormValues = () => {
         let student = {}
         this.form.querySelectorAll('.modal__input').forEach( input => {
             student[input.id] = input.value
         })
-        console.log(1)
+        console.log('строка 76')
         console.log(student)
         return student
+    }
+
+    this.changeFormValues = (student) => {
+        this.form.querySelectorAll('.modal__input').forEach( input => {
+            input.value = student[input.id]
+        })
     }
 }
 
@@ -86,14 +95,18 @@ const student = new function() {
     function submit(event) {
         event.preventDefault()
 
-        let student = mainModal.getFormValue()
+        let student = mainModal.getFormValues()
+        console.log(student)
+        mainModal.form.reset()
         if (isMain) {
             data.create(student, () => {
                 mainModal.hide()
                 render()
             })
         } else {
+            student['_id'] = currentStudent
             data.update({id: currentStudent, obj: student}, () => {
+                console.log(data.getAll())
                 mainModal.hide()
                 render()
             })
@@ -102,9 +115,7 @@ const student = new function() {
     }
 
     function init() {
-        console.log(data.get('2XXOo8czLK1TCBc5'))
         render()
-
 
         const addButton = util.query('.add-button')[0]
 
@@ -116,9 +127,13 @@ const student = new function() {
         mainModal.form.addEventListener('submit', (event) => submit(event))
 
         deleteModal.form.addEventListener('click', () => {
-            data.delete(currentStudent['_id'])
-            render()
+            data.delete(currentStudent, () => {
+                deleteModal.hide()
+                render()
+            })
         })
+
+
     }
 
     const render = () => {
@@ -146,11 +161,19 @@ const student = new function() {
         util.query('.table__delete-button').forEach( button => {
             button.addEventListener('click', () => {
                 currentStudent = button.dataset.id
-                console.log(currentStudent)
                 deleteModal.main.querySelector('.del-modal__name')
                     .innerHTML = data.get(currentStudent).name
                 deleteModal.show()
 
+            })
+        })
+
+        util.query('.table__edit-button').forEach( button => {
+            button.addEventListener('click', () => {
+                isMain = false
+                currentStudent = button.dataset.id
+                mainModal.changeFormValues(data.get(currentStudent))
+                mainModal.show()
             })
         })
 

@@ -9,14 +9,15 @@
   width: 100%;
   padding: 15px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .add-button {
   font-size: 16px;
   border: 0;
   border-radius: 6px;
-  background: #4B48E5;
-  background: linear-gradient(180deg, #5E5BF3 0%, #0d0c6c 100%);
+  background: #000;
+  background: #000;
   outline: none;
   color: #ffffff;
   padding: 0.2em 1em;
@@ -33,6 +34,9 @@
   right: 0;
   bottom: 0;
 }
+.modal__title {
+  margin: 0;
+}
 .modal__close {
   width: 30px;
   height: 30px;
@@ -42,7 +46,7 @@
   cursor: pointer;
 }
 .modal__close:hover {
-  fill: #4B48E5;
+  fill: #000;
 }
 .modal__overlay {
   position: absolute;
@@ -62,15 +66,24 @@
   max-width: 500px;
   width: 100%;
   border-radius: 2px;
+  border: 1px solid #000;
+}
+.modal__input {
+  margin-bottom: 30px;
 }
 
 .main-modal__form {
   display: flex;
   flex-direction: column;
+  max-width: 90%;
+}
+.main-modal__title {
+  margin: 0 0 15px 0;
 }
 
 body {
   font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, #5284ef 0%, #ae55ff 80%);
 }
 
 .menu {
@@ -80,14 +93,40 @@ body {
 .table {
   width: 100%;
   border-collapse: collapse;
+  box-shadow: 4px 3px 15px -2px rgba(0, 0, 0, 0.34);
 }
 .table__title {
-  background: #4B48E5;
+  background: #000;
   color: #fff;
 }
 .table__title > tr > th {
   text-align: start;
   padding: 10px;
+}
+.table__body > tr > td {
+  padding: 10px;
+  border-bottom: 1px solid #000;
+  background: #fff;
+}
+.table__body > tr:hover > td {
+  background: #e7e6e6;
+}
+.table__delete-button, .table__edit-button {
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+}
+.table__delete-button:hover, .table__edit-button:hover {
+  transform: scale(0.9);
+}
+.table__delete-button {
+  background: #e73232;
+  margin: 0 10px 0 0;
+}
+.table__edit-button {
+  background: #5284EFFF;
 }
 
 /*# sourceMappingURL=styles.css.map */

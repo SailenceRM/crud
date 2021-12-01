@@ -1,16 +1,24 @@
 const Datastore = require('nedb');
-
+const faker = require('faker')
 module.exports = new function() {
     const db = new Datastore({filename: 'students'});
     db.loadDatabase()
-
+    // Заполнение данными
+    for (let i = 0; i < 50; i++) {
+        const student = {
+            name: faker.name.findName(),
+            email: faker.internet.email(),
+            number: faker.phone.phoneNumber(),
+            dob: faker.date.soon(),
+            group: faker.lorem.word()
+        }
+        db.insert(student)
+    }
     this.create = (res, obj) => {
         db.insert(obj, (err, newDoc) => {
             if (err) {
-                res.end({error: 'server-error'})
+                res.end(JSON.stringify({error: 'server-error'}))
             } else {
-                console.log(1)
-                console.log(res)
                 res.end(JSON.stringify(newDoc))
             }
 
@@ -40,8 +48,8 @@ module.exports = new function() {
 
     this.update = (res, obj) => {
 
-        db.findOne({'_id': obj['_id']}, (err, doc) => {
-            db.update(doc, obj, {}, (err, numReplaced) => {
+        db.findOne({'_id': obj['id']}, (err, doc) => {
+            db.update(doc, obj['obj'], {}, (err, numReplaced) => {
                 if (err)
                     res.end(JSON.stringify({error: err}));
                 else

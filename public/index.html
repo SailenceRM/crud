@@ -12,16 +12,17 @@
         </symbol>
     </svg>
 
-    <div class="main-modal modal">
+    <div class="main-modal modal hide">
         <div class="main-modal__overlay modal__overlay">
 
             <div class="main-modal__body modal__body">
+                <h2 class="modal__title main-modal__title">Добавить студента</h2>
                 <svg class="modal__close"><use xlink:href="#close"></use></svg>
                 <form class="modal__form main-modal__form">
-                    <input class="modal__input" type="text" placeholder="ФИО" id="name">
-                    <input class="modal__input" type="date" placeholder="Дата рождения" id="dob">
-                    <input class="modal__input" type="email" placeholder="Email" id="email">
-                    <input class="modal__input" type="number" placeholder="Номер телефона" id="number">
+                    <input class="modal__input" type="text" placeholder="ФИО" id="name" required>
+                    <input class="modal__input" type="date" placeholder="Дата рождения" id="dob" required>
+                    <input class="modal__input" type="email" placeholder="Email" id="email" required>
+                    <input class="modal__input" type="number" placeholder="Номер телефона" id="number" required>
                     <input class="modal__input" type="text" placeholder="Группа" id="group">
                     <button type="submit">Добавить</button>
                 </form>

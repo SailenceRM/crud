@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap')
-$main-color: #4B48E5
+$main-color: #000
 
 // стили для скрипта
 .hide
@@ -12,13 +12,14 @@ $main-color: #4B48E5
   width: 100%
   padding: 15px
   margin: 0 auto
+  box-sizing: border-box
 
 .add-button
   font-size: 16px
   border: 0
   border-radius: 6px
   background: $main-color
-  background: linear-gradient(180deg, #5E5BF3 0%, #0d0c6c 100%)
+  background: $main-color
   outline: none
   color: #ffffff
   padding: 0.2em 1em
@@ -35,6 +36,9 @@ $main-color: #4B48E5
   left: 0
   right: 0
   bottom: 0
+  &__title
+    margin: 0
+
   &__close
     width: 30px
     height: 30px
@@ -61,21 +65,51 @@ $main-color: #4B48E5
     max-width: 500px
     width: 100%
     border-radius: 2px
+    border: 1px solid #000
+  &__input
+    margin-bottom: 30px
+
 .main-modal
   &__form
     display: flex
     flex-direction: column
+    max-width: 90%
+  &__title
+    margin: 0 0 15px 0
 body
   font-family: 'Roboto', sans-serif
+  background: linear-gradient(90deg,#5284ef 0%, #ae55ff 80%)
 .menu
   padding: 20px 0
 
 .table
   width: 100%
   border-collapse: collapse
+  box-shadow: 4px 3px 15px -2px rgba(0,0,0,0.34)
   &__title
     background: $main-color
     color: #fff
     & > tr > th
       text-align: start
       padding: 10px
+  &__body
+    & > tr > td
+      padding: 10px
+      border-bottom: 1px solid $main-color
+      background: #fff
+    & > tr:hover > td
+      background: #e7e6e6
+  &__delete-button, &__edit-button
+    border: none
+    outline: none
+    color: #fff
+    padding: 0.2em 0.7em
+    cursor: pointer
+    &:hover
+      transform: scale(.9)
+  &__delete-button
+    background: #e73232
+    margin: 0 10px 0 0
+
+  &__edit-button
+    background: #5284EFFF
