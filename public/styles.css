@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 .modal__close:hover {
-  fill: #000;
+  fill: #5284EFFF;
 }
 .modal__overlay {
   position: absolute;
@@ -67,9 +67,14 @@
   width: 100%;
   border-radius: 2px;
   border: 1px solid #000;
+  box-shadow: 12px 10px 41px -1px rgba(0, 0, 0, 0.32);
 }
 .modal__input {
+  width: 100%;
   margin-bottom: 30px;
+}
+.modal__input:active {
+  border-color: #5284ef;
 }
 
 .main-modal__form {
@@ -77,8 +82,43 @@
   flex-direction: column;
   max-width: 90%;
 }
+.main-modal__form > label > span {
+  font-size: 12px;
+  color: #383838;
+}
+.main-modal__input {
+  margin-top: 5px;
+}
 .main-modal__title {
   margin: 0 0 15px 0;
+}
+.main-modal__button {
+  cursor: pointer;
+  border: 2px solid #5284EFFF;
+  color: #5284EFFF;
+  font-weight: 700;
+  background: #fff;
+  transition: 0.2s;
+}
+.main-modal__button:hover {
+  background: #5284EFFF;
+  color: #fff;
+}
+
+.del-modal__button {
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #E73232FF;
+  font-weight: 700;
+  color: #E73232FF;
+  transition: 0.2s;
+}
+.del-modal__button:hover {
+  background: #E73232FF;
+  color: #fff;
+}
+.del-modal__name {
+  color: #E73232FF;
 }
 
 body {

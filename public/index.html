@@ -19,12 +19,32 @@
                 <h2 class="modal__title main-modal__title">Добавить студента</h2>
                 <svg class="modal__close"><use xlink:href="#close"></use></svg>
                 <form class="modal__form main-modal__form">
-                    <input class="modal__input" type="text" placeholder="ФИО" id="name" required>
-                    <input class="modal__input" type="date" placeholder="Дата рождения" id="dob" required>
-                    <input class="modal__input" type="email" placeholder="Email" id="email" required>
-                    <input class="modal__input" type="number" placeholder="Номер телефона" id="number" required>
-                    <input class="modal__input" type="text" placeholder="Группа" id="group">
-                    <button type="submit">Добавить</button>
+                    <label>
+                        <span>ФИО</span>
+                        <input class="modal__input main-modal__input" type="text" placeholder="" id="name" required>
+                    </label>
+
+                    <label>
+                        <span>Дата рождения</span>
+                        <input class="modal__input main-modal__input" type="date" placeholder="" id="dob" required>
+                    </label>
+
+                    <label>
+                        <span>Email</span>
+                        <input class="modal__input main-modal__input" type="email" placeholder="" id="email" required>
+                    </label>
+
+                    <label>
+                        <span>Номер телефона</span>
+                        <input class="modal__input main-modal__input" type="number" placeholder="" id="number" required>
+                    </label>
+
+                    <label>
+                        <span>Группа</span>
+                        <input class="modal__input main-modal__input" type="text" placeholder="" id="group">
+                    </label>
+
+                    <button type="submit" class="main-modal__button">Добавить</button>
                 </form>
             </div>
         </div>

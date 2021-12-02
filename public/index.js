@@ -9,6 +9,17 @@ const util = new function() {
     }
 }
 
+function changeDateFormat(date) {
+    if (date.indexOf('.') === -1) {
+        return `${date.slice(8, 10)}.${date.slice(5, 7)}.${date.slice(0, 4)}`;
+    }
+    if (date.indexOf('-') === -1) {
+        return `${date.slice(6, 10)}-${date.slice(3, 5)}-${date.slice(0, 2)}`;
+    }
+
+    return date
+}
+
 const data = new function() {
     let arr = {}
     this.init = () => {
@@ -71,7 +82,10 @@ const Modal = function(main) {
     this.getFormValues = () => {
         let student = {}
         this.form.querySelectorAll('.modal__input').forEach( input => {
-            student[input.id] = input.value
+            if (input.id === 'dob')
+                student['dob'] = changeDateFormat(input.value)
+            else
+                student[input.id] = input.value
         })
         console.log('строка 76')
         console.log(student)
@@ -80,7 +94,10 @@ const Modal = function(main) {
 
     this.changeFormValues = (student) => {
         this.form.querySelectorAll('.modal__input').forEach( input => {
-            input.value = student[input.id]
+            if (input.id === 'dob')
+                input.value = changeDateFormat(student['dob'])
+            else
+                input.value = student[input.id]
         })
     }
 }
@@ -106,7 +123,6 @@ const student = new function() {
         } else {
             student['_id'] = currentStudent
             data.update({id: currentStudent, obj: student}, () => {
-                console.log(data.getAll())
                 mainModal.hide()
                 render()
             })
@@ -120,6 +136,8 @@ const student = new function() {
         const addButton = util.query('.add-button')[0]
 
         addButton.addEventListener('click', () => {
+            mainModal.main.querySelector('.main-modal__title').innerHTML = 'Добавить студента'
+            mainModal.main.querySelector('.main-modal__button').innerHTML = 'Добавить'
             mainModal.show()
             isMain = true
         })
@@ -162,7 +180,7 @@ const student = new function() {
             button.addEventListener('click', () => {
                 currentStudent = button.dataset.id
                 deleteModal.main.querySelector('.del-modal__name')
-                    .innerHTML = data.get(currentStudent).name
+                    .innerHTML = data.get(currentStudent).name;
                 deleteModal.show()
 
             })
@@ -172,7 +190,10 @@ const student = new function() {
             button.addEventListener('click', () => {
                 isMain = false
                 currentStudent = button.dataset.id
+
                 mainModal.changeFormValues(data.get(currentStudent))
+                mainModal.main.querySelector('.main-modal__title').innerHTML = 'Изменить данные'
+                mainModal.main.querySelector('.main-modal__button').innerHTML = 'Изменить'
                 mainModal.show()
             })
         })
